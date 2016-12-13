@@ -1,0 +1,14 @@
+{
+  "name": "google-maps-app",
+  "version": "1.0.0",
+  "description": "Create a MEAN Stack Google Map App from scotch.io",
+  "main": "server.js",
+  "dependencies": {
+    "express": "^4.14.0",
+    "mongoose": "^4.6.4",
+    "morgan": "^1.2.2",
+    "body-parser": "^1.15.2",
+    "jsonwebtoken": "^7.1.9",
+    "method-override": "^2.3.6"
+  }
+}
