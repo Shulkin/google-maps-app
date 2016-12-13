@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<!--
+  Modernizr is used to determine which browser feature is enabled.
+  For example, class no-js will be changed to js if JavaScript is active,
+  otherwise it stayed as no-js and we can use it to detect which JS
+  feature can we use.
+-->
+<html class="no-js" ng-app="geolocation.app">
+  <head>
+    <meta charset="utf-8">
+    <title>Google Maps App</title>
+    <meta name="description" content="Google Maps API Tutorial">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- CSS -->
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.css"/>
+    <!-- Custom application style -->
+    <link rel="stylesheet" href="style.css"/>
+    <!-- JavaScript -->
+    <!-- Holder.js, analog of placehold.it -->
+    <script src="../bower_components/holderjs/holder.js"></script>
+    <!-- Modernizr, determine browser features -->
+    <script src="../bower_components/modernizr/bin/modernizr"></script>
+    <!-- Google Maps API -->
+    <script src="//maps.googleapis.com/maps/api/js?key=YOUR_API_HERE"></script>
+    <!-- jQuery -->
+    <script src="../bower_components/jquery/jquery.js"></script>
+    <!-- AngularJS -->
+    <script src="../bower_components/angular/angular.js"></script>
+    <script src="../bower_components/angular-route/angular-route.js"></script>
+    <script src="../bower_components/angularjs-geolocation/dist/angularjs-geolocation.min.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <!-- Main menu -->
+      <div class="header">
+        <ul class="nav nav-pills pull-right">
+          <li active><a href="">Join the Team</a></li>
+          <li disabled><a href="">Find Teammates</a></li>
+        </ul>
+        <h3 class="text-muted">Google Maps App</h3>
+      </div>
+      <!-- Map content and sidebar -->
+      <div class="row content">
+        <!-- Google Map -->
+        <div class="col-md-7">
+          <div id="map"><img src="holder.js/645x645"></div>
+        </div>
+        <!-- Side panel -->
+        <div class="col-md-5">
+          <div class="panel panel-default">
+            <!-- Title -->
+            <div class="panel-heading">
+              <h2 class="panel-title text-center">
+                Join the App Team! <span class="glyphicon glyphicon-map-marker"></span>
+              </h2>
+            </div>
+            <!-- Body -->
+            <div class="panel-body">
+              <!-- novalidate disables HTML validation, Angular will do the job -->
+              <form name="addUserForm" novalidate>
+                <div class="form-group">
+                  <label for="username">Username <span class="badge">All fields required</span></label>
+                  <input type="text" class="form-control" id="username" ng-model="formData.username" required>
+                </div>
+                <label class="radio control-label">Gender</label>
+                <div class="radio">
+                  <label><input type="radio" id="radio-male" value="Male"
+                    ng-model="formData.gender">Male</label>
+                </div>
+                <div class="radio" required>
+                  <label><input type="radio" id="radio-female" value="Female"
+                    ng-model="formData.gender">Female</label>
+                </div>
+                <div class="radio">
+                  <label><input type="radio" id="radio-other" value="Other"
+                    ng-model="formData.gender">What are you?</label>
+                </div>
+                <div class="form-group">
+                  <label for="age">Age</label>
+                  <input type="number" class="form-control" id="age"
+                    ng-model="formData.age" required>
+                </div>
+                <div class="form-group">
+                  <label for="language">Favorite Language</label>
+                  <input type="text" class="form-control" id="language"
+                    ng-model="formData.language" required="">
+                </div>
+                <div class="form-group">
+                  <label for="latitude">Latitude</label>
+                  <input type="text" class="form-control" id="latitude" value="39.500"
+                    ng-model="formData.latitude" readonly>
+                </div>
+                <div class="form-group">
+                  <label for="longitude">Longitude</label>
+                  <input type="text" class="form-control" id="longitude" value="-98.350"
+                    ng-model="formData.longitude" readonly>
+                </div>
+                <div class="form-group">
+                  <label for="verified">HTML5 Verified Location? <span>
+                    <button class="btn btn-default btn-xs">
+                      <span class="glyphicon glyphicon-refresh"></span>
+                    </button>
+                  </span></label>
+                  <input type="text" class="form-control" id="verified"
+                    placeholder="Nope (Thanks for spamming my map...)"
+                    ng-model="formData.htmlverified" readonly>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Footer -->
+      <div class="footer">
+        <p class="text-center">
+          <span class="glyphicon glyphicon-check"></span>&nbsp;
+          Evgeny Shulkin with courtesy to <a href="https://scotch.io/tutorials/making-mean-apps-with-google-maps-part-i">
+            Scotch.io Google Maps Tutorial
+          </a> | <a href="https://github.com/Shulkin/google-maps-app">
+            Github Repo
+          </a>
+        </p>
+      </div>
+    </div>
+  </body>
+</html>
