@@ -1,6 +1,6 @@
-angular.module("add.ctrl", ["geolocation"])
-.controller("addCtrl",["$scope", "$http", "geolocation", function(
-  $scope, $http, geolocation) {
+angular.module("add.ctrl", ["geolocation", "add.service"])
+.controller("addCtrl", ["$scope", "$http", "geolocation", "addService" function(
+  $scope, $http, geolocation, addService) {
   // init variables
   $scope.formData = {};
   var lat = 0;
@@ -31,6 +31,11 @@ angular.module("add.ctrl", ["geolocation"])
       $scope.formData.gender = "Male"; // by default
       $scope.formData.age = "";
       $scope.formData.favlang = "";
+      // refresh the map when user is created
+      addService.refresh(
+        $scope.formData.latitude,
+        $scope.formData.longitude
+      );
     })
     .error(function(err) {
       console.log("Error " + err);
