@@ -31,9 +31,9 @@
     <script src="../bower_components/angularjs-geolocation/dist/angularjs-geolocation.min.js"></script>
     <!-- Application source -->
     <script src="js/app.js"></script>
-    <script src="js/add-ctrl.js"></script>
+    <script src="js/controllers/add-ctrl.js"></script>
   </head>
-  <body>
+  <body ng-controller="addCtrl">
     <div class="container">
       <!-- Main menu -->
       <div class="header">
@@ -65,7 +65,8 @@
                 <!-- All fields needs to be populated due to required -->
                 <div class="form-group">
                   <label for="username">Username <span class="badge">All fields required</span></label>
-                  <input type="text" class="form-control" id="username" ng-model="formData.username" required>
+                  <input type="text" class="form-control" id="username"
+                    placeholder="Enter the name" ng-model="formData.username" required>
                 </div>
                 <label class="radio control-label">Gender</label>
                 <div class="radio">
@@ -112,6 +113,7 @@
                 </div>
                 <!-- Submit button -->
                 <button type="submit" class="btn btn-danger btn-block"
+                  ng-click="createUser()"
                   ng-disabled="addUserForm.$invalid">Submit
                   <!-- ng-disabled prevents early submits -->
                 </button>

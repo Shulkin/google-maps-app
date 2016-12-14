@@ -9,6 +9,8 @@ angular.module("add.ctrl", ["geolocation"])
   // set initial coordinates
   $scope.formData.latitude = 39.500;
   $scope.formData.longitude = -98.350;
+  // default gender
+  $scope.formData.gender = "Male";
   // functions
   // create new user
   $scope.createUser = function() {
@@ -26,12 +28,12 @@ angular.module("add.ctrl", ["geolocation"])
     .success(function(data) {
       // clear the form, except location
       $scope.formData.username = "";
-      $scope.formData.gender = "";
+      $scope.formData.gender = "Male"; // by default
       $scope.formData.age = "";
       $scope.formData.favlang = "";
     })
     .error(function(err) {
       console.log("Error " + err);
-    })
+    });
   };
 }]);
