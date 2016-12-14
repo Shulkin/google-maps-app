@@ -1,5 +1,5 @@
 angular.module("add.service", [])
-.factory("addService", ["$http", function($http) {
+.factory("addService", ["$rootScope", "$http", function($rootScope, $http) {
   // we will return this service
   var googleMapService = {};
   // array of locations from API calls
@@ -7,6 +7,9 @@ angular.module("add.service", [])
   // selected location (default to Kanzas)
   var selectedLat = 39.50;
   var selectedLong = -98.35;
+  // handle location selection
+  googleMapService.clickLat = 0;
+  googleMapService.clickLong = 0;
   // public functions
   // refresh the map with new data
   googleMapService.refresh = function(latitude, longitude) {
@@ -92,6 +95,28 @@ angular.module("add.service", [])
       icon: "http://maps.google.com/mapfiles/ms/icons/red-dot.png"
     });
     lastMarker = marker;
+    // move to selected location
+    map.panTo(new google.maps.LatLng(latitude, longitude));
+    // clicking on the Map moves the bouncing red marker
+    google.maps.event.addListener(map, "click", function(e) {
+      var marker = new google.maps.Marker({
+        map: map,
+        position: e.latLng,
+        animation: google.maps.Animation.BOUNCE,
+        icon: "http://maps.google.com/mapfiles/ms/icons/red-dot.png"
+      });
+      // delete old bouncing marker
+      if (lastMarker) {
+        lastMarker.setMap(null);
+      }
+      // save new red marker and move to it
+      lastMarker = marker;
+      map.panTo(marker.position);
+      // save new position in variables and broadcast it!
+      googleMapService.clickLat = marker.getPosition().lat();
+      googleMapService.clickLong - marker.getPosition().lng();
+      $rootScope.$broadcast("clicked"); // fire event
+    });
   };
   // refresh the page upon window load
   // use the initial latitude and longitude
