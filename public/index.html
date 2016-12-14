@@ -21,8 +21,8 @@
     <script src="../bower_components/holderjs/holder.js"></script>
     <!-- Modernizr, determine browser features -->
     <script src="../bower_components/modernizr/bin/modernizr"></script>
-    <!-- Google Maps API -->
-    <script src="//maps.googleapis.com/maps/api/js?key=YOUR_API_HERE"></script>
+    <!-- Google Maps API + API Key -->
+    <script src="//maps.googleapis.com/maps/api/js?key=AIzaSyCAZmzC3R3e0A06Zzdli966rMiP_AuGMA4"></script>
     <!-- jQuery -->
     <script src="../bower_components/jquery/jquery.js"></script>
     <!-- AngularJS -->
@@ -59,6 +59,7 @@
             <div class="panel-body">
               <!-- novalidate disables HTML validation, Angular will do the job -->
               <form name="addUserForm" novalidate>
+                <!-- All fields needs to be populated due to required -->
                 <div class="form-group">
                   <label for="username">Username <span class="badge">All fields required</span></label>
                   <input type="text" class="form-control" id="username" ng-model="formData.username" required>
@@ -84,7 +85,7 @@
                 <div class="form-group">
                   <label for="language">Favorite Language</label>
                   <input type="text" class="form-control" id="language"
-                    ng-model="formData.language" required="">
+                    ng-model="formData.language" required>
                 </div>
                 <div class="form-group">
                   <label for="latitude">Latitude</label>
@@ -106,6 +107,11 @@
                     placeholder="Nope (Thanks for spamming my map...)"
                     ng-model="formData.htmlverified" readonly>
                 </div>
+                <!-- Submit button -->
+                <button type="submit" class="btn btn-danger btn-block"
+                  ng-disabled="addUserForm.$invalid">Submit
+                  <!-- ng-disabled prevents early submits -->
+                </button>
               </form>
             </div>
           </div>
