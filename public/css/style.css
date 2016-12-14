@@ -1,4 +1,7 @@
 #map {
-  width:645px;
-  height:645px;
+  width: 100%;
+  height: 645px;
+}
+.content {
+  margin-top: 1em;
 }

@@ -63,7 +63,7 @@ angular.module("add.service", [])
     // if map has not been created already...
     if (!map) {
       // create a new map and place in the index.html page
-      var map = new google.maps.map(document.getElementById('map'), {
+      var map = new google.maps.Map(document.getElementById('map'), {
         zoom: 3,
         center: myCoords
       });

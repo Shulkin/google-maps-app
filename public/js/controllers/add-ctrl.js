@@ -1,5 +1,5 @@
 angular.module("add.ctrl", ["geolocation", "add.service"])
-.controller("addCtrl", ["$scope", "$http", "geolocation", "addService" function(
+.controller("addCtrl", ["$scope", "$http", "geolocation", "addService", function(
   $scope, $http, geolocation, addService) {
   // init variables
   $scope.formData = {};
