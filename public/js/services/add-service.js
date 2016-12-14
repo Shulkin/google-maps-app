@@ -114,7 +114,7 @@ angular.module("add.service", [])
       map.panTo(marker.position);
       // save new position in variables and broadcast it!
       googleMapService.clickLat = marker.getPosition().lat();
-      googleMapService.clickLong - marker.getPosition().lng();
+      googleMapService.clickLong = marker.getPosition().lng();
       $rootScope.$broadcast("clicked"); // fire event
     });
   };
