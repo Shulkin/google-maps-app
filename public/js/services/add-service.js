@@ -89,8 +89,7 @@ angular.module("add.service", [])
     // set initial location as bouncing red marker
     var initialLocation = new google.maps.LatLng(latitude, longitude);
     var marker = new google.maps.Marker({
-      map: map,
-      position: initialLocation,
+      map: map, position: initialLocation,
       animation: google.maps.Animation.BOUNCE,
       icon: "http://maps.google.com/mapfiles/ms/icons/red-dot.png"
     });
@@ -100,8 +99,7 @@ angular.module("add.service", [])
     // clicking on the Map moves the bouncing red marker
     google.maps.event.addListener(map, "click", function(e) {
       var marker = new google.maps.Marker({
-        map: map,
-        position: e.latLng,
+        map: map, position: e.latLng,
         animation: google.maps.Animation.BOUNCE,
         icon: "http://maps.google.com/mapfiles/ms/icons/red-dot.png"
       });

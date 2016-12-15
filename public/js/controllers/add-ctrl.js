@@ -14,8 +14,8 @@ angular.module("add.ctrl", ["geolocation", "add.service"])
     // set the latitude and longitude equal to the HTML5 coordinates
     coords = {lat: data.coords.latitude, long: data.coords.longitude};
     // display coordinates in textboxes rounded to three decimal points
-    $scope.formData.longitude = parseFloat(coords.long).toFixed(3);
     $scope.formData.latitude = parseFloat(coords.lat).toFixed(3);
+    $scope.formData.longitude = parseFloat(coords.long).toFixed(3);
     // display message confirming that the coordinates verified
     $scope.formData.htmlverified = "Yep (Thanks for giving us real data!)";
     // refresh map
@@ -24,17 +24,17 @@ angular.module("add.ctrl", ["geolocation", "add.service"])
   // default gender
   $scope.formData.gender = "Male";
   // functions
+  // when click is detected, get coordinates of mouse
+  $rootScope.$on("clicked", function() {
+    // get coordinates from service
+    $scope.$apply(function() {
+      $scope.formData.latitude = parseFloat(addService.clickLat).toFixed(3);
+      $scope.formData.longitude = parseFloat(addService.clickLong).toFixed(3);
+      $scope.formData.htmlverified = "Nope (Thanks for spamming my map...)";
+    });
+  });
   // create new user
   $scope.createUser = function() {
-    // when click is detected, get coordinates of mouse
-    $rootScope.$on("clicked", function() {
-      // get coordinates from service
-      $scope.$apply(function() {
-        $scope.formDate.latitude = parseFloat(addService.clickLat).toFixed(3);
-        $scope.formDate.longitude = parseFloat(addService.clickLong).toFixed(3);
-        $scope.formData.htmlverified = "Nope (Thanks for spamming my map...)";
-      });
-    });
     // grab all data from inputs
     var userData = {
       username: $scope.formData.username,
