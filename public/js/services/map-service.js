@@ -1,5 +1,5 @@
-angular.module("add.service", [])
-.factory("addService", ["$rootScope", "$http", function($rootScope, $http) {
+angular.module("map.service", [])
+.factory("Map", ["$rootScope", "$http", function($rootScope, $http) {
   // we will return this service
   var googleMapService = {};
   // array of locations from API calls

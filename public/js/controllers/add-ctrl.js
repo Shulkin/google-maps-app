@@ -1,6 +1,6 @@
-angular.module("add.ctrl", ["geolocation", "add.service"])
-.controller("addCtrl", ["$rootScope", "$scope", "$http", "geolocation", "addService", function(
-  $rootScope, $scope, $http, geolocation, addService) {
+angular.module("add.ctrl", ["geolocation", "map.service"])
+.controller("addCtrl", ["$rootScope", "$scope", "$http", "geolocation", "Map", function(
+  $rootScope, $scope, $http, geolocation, Map) {
   // init variables
   $scope.formData = {};
   var lat = 0;
@@ -19,7 +19,7 @@ angular.module("add.ctrl", ["geolocation", "add.service"])
     // display message confirming that the coordinates verified
     $scope.formData.htmlverified = "Yep (Thanks for giving us real data!)";
     // refresh map
-    addService.refresh($scope.formData.latitude, $scope.formData.longitude);
+    Map.refresh($scope.formData.latitude, $scope.formData.longitude);
   });
   // default gender
   $scope.formData.gender = "Male";
@@ -28,8 +28,8 @@ angular.module("add.ctrl", ["geolocation", "add.service"])
   $rootScope.$on("clicked", function() {
     // get coordinates from service
     $scope.$apply(function() {
-      $scope.formData.latitude = parseFloat(addService.clickLat).toFixed(3);
-      $scope.formData.longitude = parseFloat(addService.clickLong).toFixed(3);
+      $scope.formData.latitude = parseFloat(Map.clickLat).toFixed(3);
+      $scope.formData.longitude = parseFloat(Map.clickLong).toFixed(3);
       $scope.formData.htmlverified = "Nope (Thanks for spamming my map...)";
     });
   });
@@ -53,7 +53,7 @@ angular.module("add.ctrl", ["geolocation", "add.service"])
       $scope.formData.age = "";
       $scope.formData.favlang = "";
       // refresh the map when user is created
-      addService.refresh(
+      Map.refresh(
         $scope.formData.latitude,
         $scope.formData.longitude
       );
