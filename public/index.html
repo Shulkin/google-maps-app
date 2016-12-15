@@ -35,14 +35,20 @@
     <script src="js/services/add-service.js"></script>
   </head>
   <body ng-controller="addCtrl">
-    <div class="container">
+    <div class="container-fluid">
       <!-- Main menu -->
-      <div class="header">
-        <ul class="nav nav-pills pull-right">
-          <li active><a href="">Join the Team</a></li>
-          <li disabled><a href="">Find Teammates</a></li>
-        </ul>
-        <h3 class="text-muted">Google Maps App</h3>
+      <div class="row header">
+        <!-- Use col-xs-* for better layout -->
+        <div class="col-xs-5">
+          <h4 class="text-muted">Google Maps App</h4>
+        </div>
+        <div class="col-xs-7">
+          <!-- Menu options to the right -->
+          <ul class="nav nav-pills pull-right">
+            <li active><a href="">Join the Team</a></li>
+            <li disabled><a href="">Find Teammates</a></li>
+          </ul>
+        </div>
       </div>
       <!-- Map content and sidebar -->
       <div class="row content">
@@ -125,6 +131,7 @@
       </div>
       <!-- Footer -->
       <div class="footer">
+        <!-- Grid layout here is unnecessary! -->
         <p class="text-center">
           <span class="glyphicon glyphicon-check"></span>&nbsp;
           Evgeny Shulkin with courtesy to <a href="https://scotch.io/tutorials/making-mean-apps-with-google-maps-part-i">
