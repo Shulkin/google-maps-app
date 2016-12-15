@@ -40,7 +40,7 @@ module.exports = function(app) {
     if (distance) {
       // notice MongoDB geospatial query!
       query = query.where("location").near({
-        center: {type: "point", coordinates: [long, lat]},
+        center: {type: "Point", coordinates: [long, lat]},
         maxDistance: distance, // meters
         spherical: true // evaluate distances across the globe
       });

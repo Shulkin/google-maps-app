@@ -12,19 +12,25 @@ angular.module("map.service", [])
   googleMapService.clickLong = 0;
   // public functions
   // refresh the map with new data
-  googleMapService.refresh = function(latitude, longitude) {
+  googleMapService.refresh = function(latitude, longitude, filteredResults) {
     // clear locations
     locations = [];
     // set selected coordinates
     selectedLat = latitude;
     selectedLong = longitude;
-    // do AJAX call to get all users
-    $http.get("/users").success(function(response) {
-      // extract coords to Google Maps format
-      locations = convertToMapPoints(response);
-      // init map
-      initialize(latitude, longitude);
-    }).error(function() {}); // do nothing
+    // if filtered results provided on refresh call
+    if (filteredResults) {
+      locations = convertToMapPoints(filteredResults);
+      initialize(latitude, longitude, true); // true for filtered
+    } else {
+      // do AJAX call to get all users
+      $http.get("/users").success(function(response) {
+        // extract coords to Google Maps format
+        locations = convertToMapPoints(response);
+        // init map, no filter was used
+        initialize(latitude, longitude, false);
+      }).error(function() {}); // do nothing
+    }
   };
   // private inner functions
   // convert a JSON of users into map points
@@ -60,7 +66,7 @@ angular.module("map.service", [])
     return locations;
   };
   // initialize the map
-  var initialize = function(latitude, longitude) {
+  var initialize = function(latitude, longitude, filter) {
     // use the selected lat, long as starting point
     var myCoords = {lat: selectedLat, lng: selectedLong};
     // if map has not been created already...
@@ -71,13 +77,19 @@ angular.module("map.service", [])
         center: myCoords
       });
     }
+    // if a filter was used then icon is yellow, otherwise blue
+    if (filter) {
+      icon = "http://maps.google.com/mapfiles/ms/icons/yellow-dot.png";
+    } else {
+      icon = "http://maps.google.com/mapfiles/ms/icons/blue-dot.png";
+    }
     // loop through each location in the array and place a marker
     locations.forEach(function(n, i) {
       var marker = new google.maps.Marker({
         map: map,
         title: "Big Map",
         position: n.latlon,
-        icon: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png"
+        icon: icon
       });
       // for each marker created, add a listener that checks for clicks
       google.maps.event.addListener(marker, "click", function(e) {
