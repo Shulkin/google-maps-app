@@ -45,8 +45,8 @@
         <div class="col-xs-7">
           <!-- Menu options to the right -->
           <ul class="nav nav-pills pull-right">
-            <li active><a href="">Join the Team</a></li>
-            <li disabled><a href="">Find Teammates</a></li>
+            <li active><a href="/#/join">Join the Team</a></li>
+            <li disabled><a href="/#/find">Find Teammates</a></li>
           </ul>
         </div>
       </div>
@@ -58,75 +58,8 @@
         </div>
         <!-- Side panel -->
         <div class="col-md-5">
-          <div class="panel panel-default">
-            <!-- Title -->
-            <div class="panel-heading">
-              <h2 class="panel-title text-center">
-                Join the App Team! <span class="glyphicon glyphicon-map-marker"></span>
-              </h2>
-            </div>
-            <!-- Body -->
-            <div class="panel-body">
-              <!-- novalidate disables HTML validation, Angular will do the job -->
-              <form name="addUserForm" novalidate>
-                <!-- All fields needs to be populated due to required -->
-                <div class="form-group">
-                  <label for="username">Username <span class="badge">All fields required</span></label>
-                  <input type="text" class="form-control" id="username"
-                    placeholder="Enter the name" ng-model="formData.username" required>
-                </div>
-                <label class="radio control-label">Gender</label>
-                <div class="radio">
-                  <label><input type="radio" id="radio-male" value="Male"
-                    ng-model="formData.gender">Male</label>
-                </div>
-                <div class="radio" required>
-                  <label><input type="radio" id="radio-female" value="Female"
-                    ng-model="formData.gender">Female</label>
-                </div>
-                <div class="radio">
-                  <label><input type="radio" id="radio-other" value="Other"
-                    ng-model="formData.gender">What are you?</label>
-                </div>
-                <div class="form-group">
-                  <label for="age">Age</label>
-                  <input type="number" class="form-control" id="age"
-                    placeholder="42" ng-model="formData.age" required>
-                </div>
-                <div class="form-group">
-                  <label for="language">Favorite Language</label>
-                  <input type="text" class="form-control" id="language"
-                    placeholder="Fortran" ng-model="formData.favlang" required>
-                </div>
-                <div class="form-group">
-                  <label for="latitude">Latitude</label>
-                  <input type="text" class="form-control" id="latitude"
-                    value="39.500" ng-model="formData.latitude" readonly>
-                </div>
-                <div class="form-group">
-                  <label for="longitude">Longitude</label>
-                  <input type="text" class="form-control" id="longitude"
-                    value="-98.350" ng-model="formData.longitude" readonly>
-                </div>
-                <div class="form-group">
-                  <label for="verified">HTML5 Verified Location? <span>
-                    <button class="btn btn-default btn-xs">
-                      <span class="glyphicon glyphicon-refresh"></span>
-                    </button>
-                  </span></label>
-                  <input type="text" class="form-control" id="verified"
-                    placeholder="Nope (Thanks for spamming my map...)"
-                    ng-model="formData.htmlverified" readonly>
-                </div>
-                <!-- Submit button -->
-                <button type="submit" class="btn btn-danger btn-block"
-                  ng-click="createUser()"
-                  ng-disabled="addUserForm.$invalid">Submit
-                  <!-- ng-disabled prevents early submits -->
-                </button>
-              </form>
-            </div>
-          </div>
+          <!-- Handled by Angular ngRoute -->
+          <div ng-view></div>
         </div>
       </div>
       <!-- Footer -->
