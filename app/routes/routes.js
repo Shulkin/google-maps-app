@@ -24,6 +24,16 @@ module.exports = function(app) {
     var lat = req.body.latitude;
     var long = req.body.longitude;
     var distance = req.body.distance;
+    // gender params
+    var male = req.body.male;
+    var female = req.body.female;
+    var other = req.body.other;
+    // age
+    var minAge = req.body.minAge;
+    var maxAge = req.body.maxAge;
+    var favLang = req.body.favlang;
+    // verified
+    var reqVerified = req.body.reqVerified;
     // opens a generic mongoose query
     var query = User.find({});
     // include filter by max distance
@@ -35,7 +45,25 @@ module.exports = function(app) {
         spherical: true // evaluate distances across the globe
       });
     }
-    // other queries will go here...
+    // other filters
+    if (male || female || other) {
+      query.or([{"gender": male}, {"gender": female}, {"gender": other}]);
+    }
+    if (minAge) {
+      // greater than
+      query = query.where("age").gte(minAge);
+    }
+    if (maxAge) {
+      // lower than
+      query = query.where("age").lte(maxAge);
+    }
+    if (favLang) {
+      query = query.where("favlang").equals(favLang);
+    }
+    // filter for HTML5 Verified Locations
+    if (reqVerified) {
+      query = query.where('htmlverified').equals("Yep (Thanks for giving us real data!)");
+    }
     // execute query
     query.exec(function(err, users) {
       if (err) res.send(err);
