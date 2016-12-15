@@ -13,6 +13,7 @@ angular.module("google.maps.app", [
     templateUrl: "views/add-form.html"
   })
   .when("/find", {
+    controller: "queryCtrl",
     templateUrl: "views/query-form.html"
   })
   .otherwise({redirectTo: "/join"});
